@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cokpu3hhpp8gc"]
+
+[ext_resource type="Script" uid="uid://dcf7pt1y8kaea" path="res://player/Player.cs" id="1_sweqy"]
+[ext_resource type="Texture2D" uid="uid://bdacyqjfbf28k" path="res://art/place_holder.png" id="2_onrkg"]
+[ext_resource type="PackedScene" uid="uid://chccx76mcm1n2" path="res://bullet.tscn" id="3_i3pqv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
+size = Vector2(48, 78)
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_sweqy")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_onrkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_i3pqv")
+
+[node name="Bullet" parent="." instance=ExtResource("3_i3pqv")]
+visible = false
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
